@@ -1,0 +1,177 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StackyNotes.Views.StacksPage"
+             Title="Saved Stack Cards">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="📚"
+                   FontSize="38"
+                   HorizontalOptions="Center" />
+
+            <Label Text="{Binding PageTitle}"
+                   Style="{StaticResource PageTitleLabelStyle}" />
+
+            <Label Text="{Binding StackDescription}"
+                   Style="{StaticResource BodyLabelStyle}" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label Text="Searchable"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+                <Label Text="SQLite saved"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+            </HorizontalStackLayout>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Current stack summary"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+                    <Label Text="{Binding CurrentStackName}"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TitleColor}" />
+                    <Label Text="{Binding StatusMessage}"
+                           FontSize="14"
+                           TextColor="{StaticResource MutedColor}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Add a polished card"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+
+                    <Label Text="Stack name"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryColor}" />
+                    <Entry Text="{Binding NewStackName}"
+                           Style="{StaticResource FormEntryStyle}"
+                           Placeholder="Example: School Reminders" />
+
+                    <Label Text="Card title *"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryColor}" />
+                    <Entry Text="{Binding NewCardTitle}"
+                           Style="{StaticResource FormEntryStyle}"
+                           Placeholder="Required: card title" />
+
+                    <Label Text="Reminder details"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryColor}" />
+                    <Entry Text="{Binding NewCardContent}"
+                           Style="{StaticResource FormEntryStyle}"
+                           Placeholder="Optional details for this card" />
+
+                    <Label Text="{Binding FormHintMessage}"
+                           FontSize="13"
+                           TextColor="{StaticResource MutedColor}" />
+
+                    <Button Text="Save Card to Stack"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Command="{Binding AddCardCommand}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Find cards faster"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+
+                    <SearchBar Text="{Binding SearchText}"
+                               Placeholder="Search by title, details, or stack name"
+                               SearchCommand="{Binding RefreshCommand}"
+                               BackgroundColor="White" />
+
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <Picker Grid.Column="0"
+                                Title="Sort cards"
+                                ItemsSource="{Binding SortOptions}"
+                                SelectedItem="{Binding SelectedSortOption}" />
+
+                        <Button Grid.Column="1"
+                                Text="Clear"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Command="{Binding ClearSearchCommand}" />
+                    </Grid>
+
+                    <Label Text="Tip: tap a saved card to edit or delete it."
+                           Style="{StaticResource CaptionLabelStyle}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Reload Saved Cards"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding RefreshCommand}" />
+
+            <ActivityIndicator IsVisible="{Binding IsLoading}"
+                               IsRunning="{Binding IsLoading}"
+                               HorizontalOptions="Center" />
+
+            <CollectionView ItemsSource="{Binding Cards}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnCardSelected">
+                <CollectionView.EmptyView>
+                    <Border Padding="18"
+                            BackgroundColor="{StaticResource CardBackgroundColor}"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="1">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="🔎"
+                                   FontSize="30"
+                                   HorizontalOptions="Center" />
+                            <Label Text="{Binding EmptyStateMessage}"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="16"
+                                   TextColor="{StaticResource MutedColor}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,6"
+                                Padding="14"
+                                BackgroundColor="White"
+                                Stroke="{StaticResource BorderColor}"
+                                StrokeThickness="1">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="{Binding Title}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TitleColor}" />
+                                <Label Text="{Binding Content}"
+                                       FontSize="14"
+                                       TextColor="#5F5F5F" />
+                                <Label Text="{Binding StackName, StringFormat='Stack: {0}'}"
+                                       FontSize="13"
+                                       TextColor="{StaticResource PrimaryColor}" />
+                                <Label Text="{Binding CreatedAt, StringFormat='Saved: {0:MM/dd/yyyy h:mm tt}'}"
+                                       FontSize="12"
+                                       TextColor="#7A7A7A" />
+                                <Label Text="Tap this card to edit or delete it."
+                                       FontSize="12"
+                                       FontAttributes="Italic"
+                                       TextColor="{StaticResource SecondaryColor}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Final checklist: add a card, search it, sort it, edit it, and confirm your settings still apply."
+                   Style="{StaticResource CaptionLabelStyle}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

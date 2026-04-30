@@ -1,0 +1,11 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StackyNotes.Views.CardDetailPage">
+
+    <VerticalStackLayout Padding="20">
+        <Label Text="Card Detail Page"
+               FontSize="20"
+               HorizontalOptions="Center" />
+    </VerticalStackLayout>
+
+</ContentPage>

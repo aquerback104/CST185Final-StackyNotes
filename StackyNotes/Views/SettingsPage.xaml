@@ -1,0 +1,98 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:StackyNotes.ViewModels"
+             x:Class="StackyNotes.Views.SettingsPage"
+             x:DataType="viewmodels:SettingsViewModel"
+             Title="Settings">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="⚙️"
+                   FontSize="40"
+                   HorizontalOptions="Center" />
+
+            <Label Text="{Binding PageTitle}"
+                   Style="{StaticResource PageTitleLabelStyle}" />
+
+            <Label Text="{Binding PageDescription}"
+                   Style="{StaticResource BodyLabelStyle}" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label Text="Preferences"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+                <Label Text="Persisted"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+            </HorizontalStackLayout>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Default stack name"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+                    <Entry Text="{Binding DefaultStackName}"
+                           Style="{StaticResource FormEntryStyle}"
+                           Placeholder="Example: School Reminders" />
+
+                    <Label Text="Default sort order"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+                    <Picker Title="Choose a sort option"
+                            ItemsSource="{Binding SortOptions}"
+                            SelectedItem="{Binding SelectedSortOption}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Home screen options"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <Label Text="Show the note ideas shortcut on the home page"
+                               VerticalOptions="Center"
+                               TextColor="{StaticResource TitleColor}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding ShowIdeasShortcut}" />
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <Label Text="Show the helper tip card on the home page"
+                               VerticalOptions="Center"
+                               TextColor="{StaticResource TitleColor}" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding ShowHelperTip}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Final project summary"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+                    <Label Text="Open a quick overview page that lists the app features you can show in screenshots or testing."
+                           FontSize="14"
+                           TextColor="{StaticResource MutedColor}" />
+                    <Button Text="Open Final App Summary"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Clicked="OnOpenAboutClicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="{Binding StatusMessage}"
+                   FontSize="14"
+                   TextColor="{StaticResource MutedColor}"
+                   HorizontalTextAlignment="Center" />
+
+            <Button Text="Reset Settings"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding ResetSettingsCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="StackyNotes.Views.NoteIdeasPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Note Ideas">
+
+    <Grid Padding="24" RowDefinitions="Auto,*">
+        <VerticalStackLayout Grid.Row="0" Spacing="16">
+            <Label Text="💡"
+                   FontSize="38"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Real Note Ideas"
+                   Style="{StaticResource PageTitleLabelStyle}" />
+
+            <Label Text="Browse prompt cards loaded from local JSON data so the project includes a real-data feature."
+                   Style="{StaticResource BodyLabelStyle}" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label Text="Local JSON"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+                <Label Text="Ready for demo"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+            </HorizontalStackLayout>
+
+            <Button Text="Reload Ideas"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Clicked="OnReloadClicked" />
+
+            <Label x:Name="StatusLabel"
+                   Text="Ready to load note ideas."
+                   FontSize="14"
+                   TextColor="{StaticResource MutedColor}"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <ActivityIndicator x:Name="LoadingIndicator"
+                               IsVisible="False"
+                               IsRunning="False"
+                               HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1"
+                        x:Name="IdeasCollectionView"
+                        Margin="0,16,0,0"
+                        SelectionMode="None">
+            <CollectionView.EmptyView>
+                <Border Padding="18"
+                        BackgroundColor="{StaticResource CardBackgroundColor}"
+                        Stroke="{StaticResource BorderColor}"
+                        StrokeThickness="1">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="✨"
+                               FontSize="28"
+                               HorizontalOptions="Center" />
+                        <Label Text="No note ideas are available right now. Tap Reload Ideas to try again."
+                               TextColor="{StaticResource MutedColor}"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </Border>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,6"
+                            Padding="14"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="1">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="{Binding Category}"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource PrimaryColor}" />
+                            <Label Text="{Binding Title}"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource TitleColor}" />
+                            <Label Text="{Binding Prompt}"
+                                   FontSize="15"
+                                   TextColor="#3A3A3A" />
+                            <Label Text="{Binding WhyItHelps}"
+                                   FontSize="13"
+                                   TextColor="{StaticResource MutedColor}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

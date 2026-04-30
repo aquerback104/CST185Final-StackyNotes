@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="StackyNotes.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Final App Summary">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="✅"
+                   FontSize="40"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Final StackyNotes Summary"
+                   Style="{StaticResource PageTitleLabelStyle}" />
+
+            <Label Text="This screen highlights the main features included in the final project build."
+                   Style="{StaticResource BodyLabelStyle}" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label Text="Navigation"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+                <Label Text="MVVM"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+                <Label Text="SQLite"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+            </HorizontalStackLayout>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Included features"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+                    <Label Text="• Multi-page navigation from the home page to preview, saved cards, ideas, settings, and edit screens." />
+                    <Label Text="• MVVM-based home screen and saved-card experience." />
+                    <Label Text="• SQLite persistence for saved cards, edits, and deletes." />
+                    <Label Text="• Search, sorting, and settings that persist with Preferences." />
+                    <Label Text="• JSON-powered note ideas page for real local data." />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Suggested test flow"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+                    <Label Text="1. Add a quick note on the home page." />
+                    <Label Text="2. Preview the note and open the saved-card list." />
+                    <Label Text="3. Save a new card, then search and sort it." />
+                    <Label Text="4. Tap a card to edit or delete it." />
+                    <Label Text="5. Open Settings and verify saved preferences still apply." />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Back to Settings"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

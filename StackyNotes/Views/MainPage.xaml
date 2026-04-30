@@ -1,0 +1,96 @@
+<ContentPage
+    x:Class="StackyNotes.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:StackyNotes.ViewModels"
+    x:DataType="viewmodels:MainPageViewModel"
+    Title="StackyNotes">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+            <Label Text="📝"
+                   FontSize="42"
+                   HorizontalOptions="Center" />
+
+            <Label Text="{Binding WelcomeTitle}"
+                   Style="{StaticResource PageTitleLabelStyle}" />
+
+            <Label Text="{Binding IntroMessage}"
+                   Style="{StaticResource BodyLabelStyle}" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label Text="Final build"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+                <Label Text="Clean + organized"
+                       Style="{StaticResource InfoBadgeLabelStyle}" />
+            </HorizontalStackLayout>
+
+            <Border Padding="18"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Quick note starter"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+
+                    <Label Text="Enter a short task or reminder so you can preview it, save it later, or continue testing the final app flow."
+                           FontSize="14"
+                           TextColor="{StaticResource MutedColor}" />
+
+                    <Entry Text="{Binding NoteText}"
+                           Style="{StaticResource FormEntryStyle}"
+                           Placeholder="Example: Review final screenshots before submitting" />
+
+                    <Label Text="{Binding ResultMessage}"
+                           FontSize="14"
+                           TextColor="{Binding ResultColor}"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto" RowSpacing="12">
+                <Button Grid.Row="0" Grid.Column="0"
+                        Text="Add Quick Note"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Command="{Binding AddQuickNoteCommand}" />
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        Text="Preview This Note"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding PreviewNoteCommand}" />
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        Text="Open Saved Cards"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Command="{Binding OpenStacksCommand}" />
+
+                <Button Grid.Row="1" Grid.Column="1"
+                        Text="Browse Note Ideas"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Command="{Binding OpenIdeasCommand}"
+                        IsVisible="{Binding ShowIdeasShortcut}" />
+            </Grid>
+
+            <Button Text="Open Settings"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding OpenSettingsCommand}" />
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource CardBackgroundColor}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeThickness="1"
+                    IsVisible="{Binding ShowHelperTip}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Helpful tip"
+                           Style="{StaticResource SectionHeaderLabelStyle}" />
+                    <Label Text="{Binding TipMessage}"
+                           FontSize="14"
+                           TextColor="{StaticResource MutedColor}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Suggested final test flow: create a note, preview it, save a card, search the list, then review settings."
+                   Style="{StaticResource CaptionLabelStyle}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

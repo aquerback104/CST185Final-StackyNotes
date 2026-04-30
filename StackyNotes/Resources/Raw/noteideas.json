@@ -1,0 +1,44 @@
+[
+  {
+    "category": "Study",
+    "title": "3 key points from class",
+    "prompt": "Write three ideas you need to remember from today’s class lecture.",
+    "whyItHelps": "This turns a big topic into a fast review card."
+  },
+  {
+    "category": "Planning",
+    "title": "Top 3 tasks",
+    "prompt": "List the three most important tasks you need to finish today.",
+    "whyItHelps": "It keeps your notes focused on priorities instead of everything at once."
+  },
+  {
+    "category": "Reminder",
+    "title": "Upcoming deadline",
+    "prompt": "Create a note card for your next assignment, quiz, or meeting deadline.",
+    "whyItHelps": "This helps you turn reminders into quick action items."
+  },
+  {
+    "category": "Reflection",
+    "title": "What went well today?",
+    "prompt": "Write one short reflection about something productive or positive from today.",
+    "whyItHelps": "Small reflections make your note stack feel more personal and useful."
+  },
+  {
+    "category": "Ideas",
+    "title": "App feature idea",
+    "prompt": "Capture one feature or improvement idea you could add to StackyNotes later.",
+    "whyItHelps": "It gives you a place to save useful ideas before you forget them."
+  },
+  {
+    "category": "Organization",
+    "title": "Sort a messy thought",
+    "prompt": "Take one random thought and rewrite it as a short, organized note card.",
+    "whyItHelps": "This shows how notes can turn clutter into something clear and reusable."
+  },
+  {
+    "category": "Motivation",
+    "title": "Quick boost",
+    "prompt": "Write a short quote, goal, or sentence that keeps you motivated.",
+    "whyItHelps": "Motivation cards make the app feel more like a real daily tool."
+  }
+]
